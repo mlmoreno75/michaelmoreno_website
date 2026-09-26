@@ -1,31 +1,21 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
+  name: Michael Moreno
+  site: 'https://michaelmoreno-website.vercel.app'
   base: '/'
   trailingSlash: false
-
-  googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
 
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+    default: 'Michael Moreno | Product Marketing Leader, Security, Data & AI'
+    template: '%s | Michael Moreno'
+  description: 'Product and partner marketing leader who translates technology features into business outcomes that drive revenue. Security, data, and AI.'
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
-    images:
-      - url: '~/assets/images/default.png'
-        width: 1200
-        height: 628
+    site_name: Michael Moreno
     type: website
-  twitter:
-    handle: '@arthelokyo'
-    site: '@arthelokyo'
-    cardType: summary_large_image
 
 i18n:
   language: en

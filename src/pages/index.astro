@@ -9,42 +9,43 @@ import Features3 from '~/components/widgets/Features3.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Projects from '~/components/widgets/Projects.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
-import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
-import Contact from '~/components/widgets/Contact.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
 import StructuredData from '~/components/common/StructuredData.astro';
-import { SITE, METADATA, I18N } from 'astrowind:config';
-import favIconSvg from '~/assets/favicons/favicon.svg';
+
+const LINKEDIN_URL = 'https://www.linkedin.com/in/michael-moreno';
 
 const metadata = {
-  title: 'Michael Moreno',
+  title: 'Michael Moreno | Product Marketing Leader, Security, Data & AI',
   ignoreTitleTemplate: true,
 };
 
-// Structured data for the site and its publisher, built only from
-// `src/config.yaml` (`site.name`, `site.site`, `metadata.twitter.handle`), so
-// it is correct for any site made with the template. Blog posts add
-// BlogPosting on their own.
-const organizationId = `${SITE?.site}/#organization`;
-const structuredData = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    '@id': `${SITE?.site}/#website`,
-    name: SITE?.name,
-    url: SITE?.site,
-    inLanguage: I18N?.language,
-    publisher: { '@id': organizationId },
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    '@id': organizationId,
-    name: SITE?.name,
-    url: SITE?.site,
-    logo: new URL(favIconSvg.src, SITE?.site).toString(),
-    ...(METADATA?.twitter?.handle ? { sameAs: [`https://x.com/${METADATA.twitter.handle.replace(/^@/, '')}`] } : {}),
-  },
-];
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Michael Moreno',
+  jobTitle: 'Product Marketing Leader',
+  sameAs: [LINKEDIN_URL],
+};
+
+// Neutral placeholders until real assets are supplied; the widgets accept
+// raw HTML strings for images so no new component is needed.
+const headshotPlaceholder = `
+  <div class="mx-auto flex aspect-square w-full max-w-md items-center justify-center rounded-lg border border-slate-700 bg-slate-800/60 text-lg font-medium text-slate-400" aria-label="Headshot placeholder">
+    [Headshot]
+  </div>
+`;
+
+const imagePlaceholder = `
+  <div class="flex aspect-[16/10] w-full items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900 text-sm font-medium text-slate-400" aria-label="Image placeholder">
+    [Image]
+  </div>
+`;
+
+const initialsAvatar = (initials: string) => `
+  <div class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-xs font-semibold text-slate-200" aria-hidden="true">
+    ${initials}
+  </div>
+`;
 ---
 
 <Layout metadata={metadata}>
@@ -57,7 +58,6 @@ const structuredData = [
         { text: 'Expertise', href: '#expertise' },
         { text: 'Experience', href: '#experience' },
         { text: 'Accomplishments', href: '#accomplishments' },
-        { text: 'Blog', href: '#blog' },
       ]}
       actions={[{ text: 'Message Me', href: '#contact' }]}
       isSticky
@@ -69,6 +69,7 @@ const structuredData = [
 
   <Hero
     id="hero"
+    tagline="Product & Partner Marketing Leader | Security, Data & AI"
     title="Michael Moreno"
     actions={[
       { variant: 'primary', text: 'Download Résumé', href: '/resume.pdf', icon: 'tabler:download' },
@@ -76,8 +77,10 @@ const structuredData = [
     ]}
   >
     <Fragment slot="subtitle">
-      <span class="block text-xl sm:text-2xl font-semibold text-heading">[Headline: one line about what you do]</span>
-      <span class="block mt-2">[Subhead: one line about who you help and how]</span>
+      <span class="block text-xl sm:text-2xl font-semibold text-heading"
+        >I translate technology features into business outcomes that drive revenue.</span
+      >
+      <span class="block mt-2">With differentiated narratives that cut through the noise.</span>
     </Fragment>
   </Hero>
 
@@ -86,10 +89,10 @@ const structuredData = [
   <Stats
     id="stats"
     stats={[
-      { amount: '[00]+', title: '[Label one]' },
-      { amount: '[00]', title: '[Label two]' },
-      { amount: '[$0M]', title: '[Label three]' },
-      { amount: '[00%]', title: '[Label four]' },
+      { amount: '44X', title: 'Google-sourced revenue' },
+      { amount: '$50M', title: 'Partner-influenced pipeline' },
+      { amount: '$7M+', title: 'First-year Marketplace revenue' },
+      { amount: '$3M+', title: 'Closed-won, first gen-AI portfolio' },
     ]}
   />
 
@@ -104,39 +107,32 @@ const structuredData = [
         callToAction: {
           target: '_blank',
           text: 'LinkedIn',
-          href: '#',
-        },
-      },
-      {
-        icon: 'tabler:brand-github',
-        callToAction: {
-          target: '_blank',
-          text: 'GitHub',
-          href: '#',
-        },
-      },
-      {
-        icon: 'tabler:brand-x',
-        callToAction: {
-          target: '_blank',
-          text: 'X',
-          href: '#',
+          href: LINKEDIN_URL,
         },
       },
     ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1491349174775-aaafddd81942?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
-      alt: 'Portrait placeholder',
-      loading: 'eager',
-    }}
+    image={headshotPlaceholder}
   >
     <Fragment slot="content">
-      <h2 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">About me</h2>
-      <p>[Paragraph one: your background, what you do today, and the kind of problems you like to solve.]</p>
+      <h2 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">About</h2>
+      <p>
+        Most technology companies build faster than their market understands them. The product is ahead of the story,
+        and growth stalls at feature-selling. I close that gap: I find where market perception lags what a product can
+        actually do, then build the positioning, launch, and partner motion that turns it into pipeline.
+      </p>
       <br />
-      <p>[Paragraph two: how you work, what you value, and what people can expect when they work with you.]</p>
+      <p>
+        I started in computer science and software engineering, then spent ten years at Intel selling and marketing into
+        accounts like Lenovo and IBM, where I learned how technology actually gets bought. Since then I've led product,
+        solutions, and partner marketing at Cloudera, Cloudflare, Exabeam, SADA, and Procore, across data, security,
+        cloud, and AI.
+      </p>
       <br />
-      <p>[Closing line: where to find you online.]</p>
+      <p>
+        I also build with AI myself. I created CampaignAgent, an agentic marketing attribution platform, which keeps me
+        fluent in how AI is changing both the products we market and how marketing teams work. I'm based in Austin and
+        work in English, Spanish, and Portuguese.
+      </p>
     </Fragment>
 
     <Fragment slot="bg">
@@ -149,23 +145,26 @@ const structuredData = [
   <Features3
     id="expertise"
     title="Expertise"
-    subtitle="[One line introducing the three areas you are known for.]"
+    subtitle="Three things I'm hired to do."
     columns={3}
     defaultIcon="tabler:point-filled"
     items={[
       {
-        title: '[Expertise area one]',
-        description: '[Two lines describing what you do in this area and the results it produces.]',
+        title: 'Complexity into outcomes',
+        description:
+          'I make complex platforms make sense to technical buyers and executives, and move companies from selling features to selling outcomes.',
         icon: 'tabler:target',
       },
       {
-        title: '[Expertise area two]',
-        description: '[Two lines describing what you do in this area and the results it produces.]',
+        title: 'Ecosystems into revenue',
+        description:
+          'I turn partners, marketplaces, and channels into a repeatable revenue engine, with one message carried across every channel.',
         icon: 'tabler:chart-arrows',
       },
       {
-        title: '[Expertise area three]',
-        description: '[Two lines describing what you do in this area and the results it produces.]',
+        title: 'AI-native GTM',
+        description:
+          'I build with AI, not just talk about it, so teams adopt AI workflows faster and AI products get positioned credibly.',
         icon: 'tabler:users-group',
       },
     ]}
@@ -179,20 +178,38 @@ const structuredData = [
     items={[
       {
         title:
-          '[Role title] <br /> <span class="font-normal">[Company], [City, ST]</span> <br /> <span class="text-sm font-normal">[Year] - Present</span>',
-        description: `[Responsibility or outcome one.] <br /> [Responsibility or outcome two.] <br /> [Responsibility or outcome three.]`,
+          'Procore <br /> <span class="font-normal">Principal Product Marketing Manager</span> <br /> <span class="text-sm font-normal text-muted">2025 to 2026</span>',
+        description: `Led the launch and GTM for Owner-specific features that expand Procore's SOM from $300M to over $450M. <br /> Created nine core sales assets that moved $2M in pipeline and converted $500K in closed-won revenue with a customer in 2H 2025. <br /> Led CFO and CIO forums that produced $2.6M in sourced pipeline and 89% positive executive sentiment.`,
         icon: 'tabler:briefcase',
       },
       {
         title:
-          '[Previous role title] <br /> <span class="font-normal">[Company], [City, ST]</span> <br /> <span class="text-sm font-normal">[Year] - [Year]</span>',
-        description: `[Responsibility or outcome one.] <br /> [Responsibility or outcome two.] <br /> [Responsibility or outcome three.]`,
+          'SADA <br /> <span class="font-normal">Director of Solutions Marketing</span> <br /> <span class="text-sm font-normal text-muted">2024 to 2025</span>',
+        description: `Built and led a team of five product marketers, standing up the solutions marketing function from scratch. <br /> Led positioning for SADA's first generative-AI solution portfolio, contributing $3M+ in closed-won revenue. <br /> Built solution-level messaging frameworks that position AI transformation outcomes, not features.`,
         icon: 'tabler:briefcase',
       },
       {
         title:
-          '[Earlier role title] <br /> <span class="font-normal">[Company], [City, ST]</span> <br /> <span class="text-sm font-normal">[Year] - [Year]</span>',
-        description: `[Responsibility or outcome one.] <br /> [Responsibility or outcome two.]`,
+          'Exabeam <br /> <span class="font-normal">Senior Product Marketing Manager</span> <br /> <span class="text-sm font-normal text-muted">2021 to 2024</span>',
+        description: `Led the 'Built on Google Cloud' campaign, achieving a 44X increase in Google-sourced revenue and the 2023 Google Technology Partner of the Year Award. <br /> Launched Exabeam in the Google Cloud Marketplace, delivering over $7M in revenue in the first year. <br /> Built competitive intelligence and messaging that supported $50M+ in partner-influenced pipeline.`,
+        icon: 'tabler:briefcase',
+      },
+      {
+        title:
+          'Cloudflare <br /> <span class="font-normal">Senior Partner Marketing Manager, Americas</span> <br /> <span class="text-sm font-normal text-muted">2019 to 2021</span>',
+        description: `Built the Americas partner-marketing motion and led platform GTM programs that generated $6.5M in pipeline. <br /> Implemented product-led growth strategies with North and South American resellers, generating over $2M in closed-won net new ARR. <br /> Led the global campaign integrating Cloudflare into OEM partner IBM's go-to-market.`,
+        icon: 'tabler:briefcase',
+      },
+      {
+        title:
+          'Cloudera <br /> <span class="font-normal">Senior Product Marketing Manager, SaaS Partnerships</span> <br /> <span class="text-sm font-normal text-muted">2015 to 2019</span>',
+        description: `Owned the messaging and GTM behind Cloudera's customer-insights motion, a core driver of annual ARR growth. <br /> Built an ISV demo program that produced 7K qualified leads and $9M in partner-sourced revenue. <br /> Named Most Innovative Marketer of the Year.`,
+        icon: 'tabler:briefcase',
+      },
+      {
+        title:
+          'Intel <br /> <span class="font-normal">Enterprise and Regional Marketing Manager</span> <br /> <span class="text-sm font-normal text-muted">[years]</span>',
+        description: `Defined and launched Lenovo's first Hyper-Converged Platform, generating $50M in annual revenue. <br /> Led enterprise and regional marketing for Lenovo, IBM, and Latin America accounts.`,
         icon: 'tabler:briefcase',
       },
     ]}
@@ -204,37 +221,31 @@ const structuredData = [
   <Projects
     id="accomplishments"
     title="Key accomplishments"
-    subtitle="[One line framing the work you are proudest of and why it mattered.]"
+    subtitle="Where the story caught up to the product."
     items={[
       {
-        title: '[Accomplishment one]',
-        description: '[Two or three sentences on the challenge, what you did, and who it was for.]',
-        image: {
-          src: 'https://images.unsplash.com/photo-1658248165252-71e116af1b34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=928&q=80',
-          alt: 'Accomplishment one placeholder image',
-        },
-        tags: ['[Tag]', '[Tag]', '[Tag]'],
-        result: '[Outcome: the measurable result, e.g. +00% revenue]',
+        title: 'Built on Google Cloud',
+        description:
+          "Exabeam needed a new route to enterprise security buyers already committed to Google Cloud. I led the 'Built on Google Cloud' campaign and Marketplace launch, aligning positioning, enablement, and co-selling with Google.",
+        image: imagePlaceholder,
+        tags: ['Partner GTM', 'Marketplace', 'Security'],
+        result: '44X Google-sourced revenue. 2023 Google Technology Partner of the Year.',
       },
       {
-        title: '[Accomplishment two]',
-        description: '[Two or three sentences on the challenge, what you did, and who it was for.]',
-        image: {
-          src: 'https://images.unsplash.com/photo-1619983081563-430f63602796?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
-          alt: 'Accomplishment two placeholder image',
-        },
-        tags: ['[Tag]', '[Tag]'],
-        result: '[Outcome: the measurable result, e.g. $0M saved]',
+        title: "SADA's first gen-AI portfolio",
+        description:
+          'SADA had powerful generative-AI capability but no story enterprise buyers would pay for. I built the solutions marketing team and a messaging framework that sold AI transformation outcomes, not features.',
+        image: imagePlaceholder,
+        tags: ['AI', 'Launch', 'Team building'],
+        result: '$3M+ closed-won revenue.',
       },
       {
-        title: '[Accomplishment three]',
-        description: '[Two or three sentences on the challenge, what you did, and who it was for.]',
-        image: {
-          src: 'https://images.unsplash.com/photo-1664455340023-214c33a9d0bd?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
-          alt: 'Accomplishment three placeholder image',
-        },
-        tags: ['[Tag]', '[Tag]', '[Tag]'],
-        result: '[Outcome: the measurable result, e.g. 00 teams onboarded]',
+        title: 'Procore for Owners',
+        description:
+          'Procore was built for contractors and needed a story for a new buyer: owners managing capital projects. I led the launch and GTM for Owner-specific features and the narrative behind them.',
+        image: imagePlaceholder,
+        tags: ['New segment', 'Launch', 'Positioning'],
+        result: 'SOM expanded from $300M to over $450M.',
       },
     ]}
   />
@@ -243,76 +254,45 @@ const structuredData = [
 
   <Testimonials
     id="testimonials"
-    title="Testimonials"
-    subtitle="[One line introducing what colleagues and clients say about working with you.]"
+    title="What colleagues say"
+    subtitle="[One line intro]"
     testimonials={[
       {
-        testimonial: `[Testimonial one: two or three sentences in the speaker's own words.]`,
-        name: '[Name]',
+        testimonial: '[Paste quote from mikemorenostrategy.com]',
+        name: 'Erin Winchester',
         job: '[Title, Company]',
-        image: {
-          src: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
-          alt: 'Placeholder portrait',
-        },
+        image: initialsAvatar('EW'),
       },
       {
-        testimonial: `[Testimonial two: two or three sentences in the speaker's own words.]`,
-        name: '[Name]',
+        testimonial: '[Paste quote from mikemorenostrategy.com]',
+        name: 'Cassady Churchill',
         job: '[Title, Company]',
-        image: {
-          src: 'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=772&q=80',
-          alt: 'Placeholder portrait',
-        },
+        image: initialsAvatar('CC'),
       },
       {
-        testimonial: `[Testimonial three: two or three sentences in the speaker's own words.]`,
-        name: '[Name]',
+        testimonial: '[Paste quote from mikemorenostrategy.com]',
+        name: 'Rodrigo Mancilla',
         job: '[Title, Company]',
-        image: {
-          src: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
-          alt: 'Placeholder portrait',
-        },
+        image: initialsAvatar('RM'),
       },
     ]}
   />
 
-  <!-- BlogLatestPost Widget **************** -->
-
-  <BlogLatestPosts
-    id="blog"
-    title="From the blog"
-    information={`[One or two lines about what you write about and who it is for.]`}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </BlogLatestPosts>
-
   <!-- Contact Widget **************** -->
 
-  <Contact
+  <CallToAction
     id="contact"
-    title="Get in touch"
-    subtitle="[One line inviting people to reach out and what to expect.]"
-    inputs={[
+    title="Let's talk"
+    subtitle="Open to Director and Head of Product Marketing roles in security, data, and AI. The fastest way to reach me is below."
+    actions={[
+      { variant: 'primary', text: 'Email me', href: 'mailto:mlmoreno@gmail.com', icon: 'tabler:mail' },
       {
-        type: 'text',
-        name: 'name',
-        label: 'Name',
-      },
-      {
-        type: 'email',
-        name: 'email',
-        label: 'Email',
+        variant: 'secondary',
+        text: 'Connect on LinkedIn',
+        href: LINKEDIN_URL,
+        target: '_blank',
+        icon: 'tabler:brand-linkedin',
       },
     ]}
-    textarea={{
-      label: 'Message',
-    }}
-    disclaimer={{
-      label: '[Disclaimer: how you handle the information submitted through this form.]',
-    }}
-    description="[Response time, e.g. I typically reply within two business days.]"
-    button="Send message"
   />
 </Layout>
