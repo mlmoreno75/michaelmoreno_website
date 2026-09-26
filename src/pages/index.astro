@@ -29,10 +29,16 @@ const structuredData = {
 
 // Neutral placeholders until real assets are supplied; the widgets accept
 // raw HTML strings for images so no new component is needed.
-const headshotPlaceholder = `
-  <div class="mx-auto flex aspect-square w-full max-w-md items-center justify-center rounded-lg border border-slate-700 bg-slate-800/60 text-lg font-medium text-slate-400" aria-label="Headshot placeholder">
-    [Headshot]
-  </div>
+  const headshot = `
+  <img
+    src="/images/michael-moreno-headshot.png"
+    alt="Michael Moreno, seated in a navy blazer and white shirt, smiling"
+    width="946"
+    height="1110"
+    loading="lazy"
+    decoding="async"
+    class="mx-auto w-full max-w-md rounded-lg object-cover"
+  />
 `;
 
 const imagePlaceholder = `
@@ -111,7 +117,7 @@ const initialsAvatar = (initials: string) => `
         },
       },
     ]}
-    image={headshotPlaceholder}
+    image={headshot}
   >
     <Fragment slot="content">
       <h2 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">About</h2>
