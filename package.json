@@ -8,8 +8,8 @@
     "node": ">=22.22.3"
   },
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
+    "dev": "astro dev --force",
+    "start": "astro dev --force",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",

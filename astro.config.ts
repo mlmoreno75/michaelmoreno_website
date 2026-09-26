@@ -26,6 +26,9 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 export default defineConfig({
   output: 'static',
 
+  // Listen on all interfaces so the v0 preview proxy can reach the dev server.
+  server: { host: true },
+
   // Prefetch links as they enter the viewport for snappier navigations
   // (works together with <ClientRouter />, which enables prefetch by default).
   prefetch: {
@@ -130,6 +133,8 @@ export default defineConfig({
   },
 
   vite: {
+    // Accept the v0 preview host and cross-origin requests in development.
+    server: { allowedHosts: true, cors: true },
     plugins: [tailwindcss()],
     resolve: {
       alias: {
