@@ -26,6 +26,17 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 export default defineConfig({
   output: 'static',
 
+  // Listen on all interfaces so the v0 preview proxy can reach the dev server.
+  server: { host: true },
+
+  // The dev server's Sec-Fetch guard returns 403 for cross-origin `cors`
+  // requests (e.g. the v0 preview health probe) unless their Origin matches
+  // one of these patterns. A pattern without `hostname` matches any host.
+  // Dev-only in practice: the static build has no runtime that reads this.
+  security: {
+    allowedDomains: [{ protocol: 'https' }, { protocol: 'http' }],
+  },
+
   // Prefetch links as they enter the viewport for snappier navigations
   // (works together with <ClientRouter />, which enables prefetch by default).
   prefetch: {
@@ -130,6 +141,8 @@ export default defineConfig({
   },
 
   vite: {
+    // Accept the v0 preview host and cross-origin requests in development.
+    server: { allowedHosts: true, cors: true },
     plugins: [tailwindcss()],
     resolve: {
       alias: {
