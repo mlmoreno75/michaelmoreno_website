@@ -1,4 +1,6 @@
-import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
+import { getPermalink } from './utils/permalinks';
+
+const LINKEDIN_URL = 'https://www.linkedin.com/in/michael-moreno';
 
 export const headerData = {
   links: [
@@ -6,7 +8,6 @@ export const headerData = {
     { text: 'Expertise', href: getPermalink('/#expertise') },
     { text: 'Experience', href: getPermalink('/#experience') },
     { text: 'Accomplishments', href: getPermalink('/#accomplishments') },
-    { text: 'Blog', href: getBlogPermalink() },
   ],
   actions: [{ text: 'Message Me', href: getPermalink('/#contact') }],
 };
@@ -23,13 +24,6 @@ export const footerData = {
       ],
     },
     {
-      title: 'Writing',
-      links: [
-        { text: 'Blog', href: getBlogPermalink() },
-        { text: 'RSS feed', href: getAsset('/rss.xml') },
-      ],
-    },
-    {
       title: 'Connect',
       links: [
         { text: 'Message me', href: getPermalink('/#contact') },
@@ -37,15 +31,7 @@ export const footerData = {
       ],
     },
   ],
-  secondaryLinks: [
-    { text: 'Terms', href: getPermalink('/terms') },
-    { text: 'Privacy Policy', href: getPermalink('/privacy') },
-  ],
-  socialLinks: [
-    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
-    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/arthelokyo/astrowind' },
-  ],
-  footNote: `
-    Made by <a class="text-blue-600 underline dark:text-muted" href="https://arthelokyo.com"> Arthelokyo</a> · All rights reserved.
-  `,
+  secondaryLinks: [],
+  socialLinks: [{ ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: LINKEDIN_URL }],
+  footNote: `© 2026 Michael Moreno`,
 };
