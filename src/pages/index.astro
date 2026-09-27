@@ -56,6 +56,20 @@ const imagePlaceholder = `
   </div>
 `;
 
+const projectImage = (src: string, alt: string) => `
+  <div class="overflow-hidden">
+    <img
+      src="${src}"
+      alt="${alt}"
+      width="1600"
+      height="1000"
+      loading="lazy"
+      decoding="async"
+      class="aspect-[16/10] w-full object-cover transition group-hover:scale-[1.03]"
+    />
+  </div>
+`;
+
 const photoAvatar = (src: string, name: string) => `
   <img
     src="${src}"
@@ -314,8 +328,11 @@ const photoAvatar = (src: string, name: string) => `
         title: 'Built on Google Cloud',
         description:
           "Exabeam needed a new route to enterprise security buyers already committed to Google Cloud. I led the 'Built on Google Cloud' campaign and Marketplace launch, aligning positioning, enablement, and co-selling with Google.",
-        image: imagePlaceholder,
-        tags: ['Partner GTM', 'Marketplace', 'Security'],
+      image: projectImage(
+        '/images/accomplishments/exabeam-built-on-google-cloud.webp',
+        'Exabeam Serverless Cybersecurity Platform architecture diagram, powered by Google Cloud'
+      ),
+      tags: ['Partner GTM', 'Marketplace', 'Security'],
         result: '44X Google-sourced revenue. 2023 Google Technology Partner of the Year.',
       },
       {
