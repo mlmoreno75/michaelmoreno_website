@@ -16,14 +16,7 @@ const LINKEDIN_URL = 'https://www.linkedin.com/in/michael-moreno';
 // TODO: replace with the real RevGen AI scheduling link.
 const STRATEGY_SESSION_URL = '#';
 
-// Original template blue for the two primary CTAs. `btn-primary` sets `dark:bg-primary`,
-// so the dark variants are required for the override to win in dark mode.
-const BLUE_BUTTON = [
-  'bg-[rgb(1_97_239)] border-[rgb(1_97_239)] text-white',
-  'hover:bg-[rgb(1_84_207)] hover:border-[rgb(1_84_207)]',
-  'dark:bg-[rgb(1_97_239)] dark:border-[rgb(1_97_239)]',
-  'dark:hover:bg-[rgb(1_84_207)] dark:hover:border-[rgb(1_84_207)]',
-].join(' ');
+import { BLUE_BUTTON } from '~/navigation';
 
 const metadata = {
   title: 'Michael Moreno | Product Marketing Leader, Security, Data & AI',
@@ -444,17 +437,18 @@ const photoAvatar = (src: string, name: string) => `
           variant: 'primary',
           text: 'Discuss a role',
           href: 'mailto:mlmoreno@gmail.com?subject=Product%20or%20partner%20marketing%20role',
+          class: BLUE_BUTTON,
         },
-        secondaryLink: { text: 'Connect on LinkedIn', href: LINKEDIN_URL, target: '_blank' },
       },
       {
         label: 'Building an early-stage startup?',
         text: "Recently funded, launching fast, and your story isn't keeping up with your product? Book a strategy session with RevGen AI, my advisory practice, to sharpen your messaging, positioning, and GTM.",
         action: {
-          variant: 'secondary',
+          variant: 'primary',
           text: 'Book a strategy session',
           href: STRATEGY_SESSION_URL,
           target: '_blank',
+          class: BLUE_BUTTON,
         },
       },
     ]}
