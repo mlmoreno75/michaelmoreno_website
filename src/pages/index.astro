@@ -50,12 +50,6 @@ const structuredData = {
   />
 `;
 
-const imagePlaceholder = `
-  <div class="flex aspect-[16/10] w-full items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900 text-sm font-medium text-slate-400" aria-label="Image placeholder">
-    [Image]
-  </div>
-`;
-
 const projectImage = (src: string, alt: string) => `
   <div class="overflow-hidden">
     <img
@@ -338,16 +332,22 @@ const photoAvatar = (src: string, name: string) => `
       {
         title: "SADA's first gen-AI portfolio",
         description:
-          'SADA had powerful generative-AI capability but no story enterprise buyers would pay for. I built the solutions marketing team and a messaging framework that sold AI transformation outcomes, not features.',
-        image: imagePlaceholder,
+        'SADA had powerful generative-AI capability but no story enterprise buyers would pay for. I built the solutions marketing team and a messaging framework that sold AI transformation outcomes, not features.',
+      image: projectImage(
+        '/images/accomplishments/sada-gen-ai-portfolio.webp',
+        'SADA generative-AI graphic: a line-art brain connected to insight, analytics, and idea icons'
+      ),
         tags: ['AI', 'Launch', 'Team building'],
         result: '$3M+ closed-won revenue.',
       },
       {
         title: 'Procore for Owners',
         description:
-          'Procore was built for contractors and needed a story for a new buyer: owners managing capital projects. I led the launch and GTM for Owner-specific features and the narrative behind them.',
-        image: imagePlaceholder,
+        'Procore was built for contractors and needed a story for a new buyer: owners managing capital projects. I led the launch and GTM for Owner-specific features and the narrative behind them.',
+      image: projectImage(
+        '/images/accomplishments/procore-for-owners.webp',
+        'Procore Portfolio Management Hub showing the Capital Planning view for owners'
+      ),
         tags: ['New segment', 'Launch', 'Positioning'],
         result: 'SOM expanded from $300M to over $450M.',
       },
