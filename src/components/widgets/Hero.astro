@@ -1,6 +1,7 @@
 ---
 import Image from '~/components/common/Image.astro';
 import Button from '~/components/ui/Button.astro';
+import { twMerge } from 'tailwind-merge';
 
 import type { Hero as Props } from '~/types';
 
@@ -72,7 +73,7 @@ const imageWhole = imageAspect === 'auto';
                 {Array.isArray(actions) ? (
                   actions.map((action) => (
                     <div class="flex w-full sm:w-auto">
-                      <Button {...(action || {})} class="w-full sm:mb-0" />
+                      <Button {...(action || {})} class={twMerge('w-full sm:mb-0', action?.class)} />
                     </div>
                   ))
                 ) : (
