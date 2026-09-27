@@ -50,6 +50,12 @@ const structuredData = {
   />
 `;
 
+const imagePlaceholder = (label: string) => `
+  <div class="flex aspect-[16/10] w-full items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900 px-6 text-center text-sm font-medium text-slate-400" aria-label="Image placeholder">
+    ${label}
+  </div>
+`;
+
 const projectImage = (src: string, alt: string) => `
   <div class="overflow-hidden">
     <img
@@ -311,7 +317,45 @@ const photoAvatar = (src: string, name: string) => `
     ]}
   />
 
-  <!-- Projects Widget *************** -->
+  <!-- Projects Widget: Projects ************** -->
+
+  <Projects
+    id="projects"
+    title="Projects"
+    subtitle="Tools I&apos;ve built to make marketing and sales teams faster."
+    items={[
+      {
+        status: 'In pilot development',
+        tags: ['AI agents', 'Martech', 'CRM'],
+        title: 'CampaignAgent',
+        description:
+          'A governance layer between campaign execution and CRM revenue reporting for HubSpot and Salesforce teams. It standardizes campaign structure at launch, so attribution is clean from day one instead of patched together later.',
+        result: 'Board-ready campaign ROI without adding ops headcount.',
+        image: imagePlaceholder('[CampaignAgent dashboard screenshot]'),
+      },
+      {
+        status: 'MVP demo',
+        tags: ['Claude', 'Sales enablement'],
+        title: 'Sales SKU Organizer',
+        description:
+          'SKU details changed constantly, and keeping seller-facing information accurate took hours of manual review every cycle. I built a lightweight app on approved SKU data, designed to give sellers one accurate source for customers.',
+        result: 'Estimated to save 100+ hours of team time.',
+        image: imagePlaceholder('[Screenshot or diagram]'),
+      },
+      {
+        status: 'Archived',
+        statusTone: 'muted',
+        tags: ['SaaS', 'Chrome extension'],
+        title: 'IconPilot',
+        description:
+          'A productivity app that helps non-designers find, customize, and export license-safe icons for decks, docs, and web pages. I led it end to end: concept, positioning, UX, go-to-market, and build.',
+        result: 'Shipped as a web app and Chrome extension.',
+        image: imagePlaceholder('[IconPilot screenshot]'),
+      },
+    ]}
+  />
+
+  <!-- Projects Widget: Key accomplishments ************** -->
 
   <Projects
     id="accomplishments"
