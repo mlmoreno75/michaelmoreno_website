@@ -14,6 +14,15 @@ import StructuredData from '~/components/common/StructuredData.astro';
 
 const LINKEDIN_URL = 'https://www.linkedin.com/in/michael-moreno';
 
+// Original template blue for the two primary CTAs. `btn-primary` sets `dark:bg-primary`,
+// so the dark variants are required for the override to win in dark mode.
+const BLUE_BUTTON = [
+  'bg-[rgb(1_97_239)] border-[rgb(1_97_239)] text-white',
+  'hover:bg-[rgb(1_84_207)] hover:border-[rgb(1_84_207)]',
+  'dark:bg-[rgb(1_97_239)] dark:border-[rgb(1_97_239)]',
+  'dark:hover:bg-[rgb(1_84_207)] dark:hover:border-[rgb(1_84_207)]',
+].join(' ');
+
 const metadata = {
   title: 'Michael Moreno | Product Marketing Leader, Security, Data & AI',
   ignoreTitleTemplate: true,
@@ -77,7 +86,13 @@ const initialsAvatar = (initials: string) => `
     id="hero"
     title="Michael Moreno"
     actions={[
-      { variant: 'primary', text: 'Download Résumé', href: '/resume.pdf', icon: 'tabler:download' },
+      {
+        variant: 'primary',
+        text: 'Download Résumé',
+        href: '/resume.pdf',
+        icon: 'tabler:download',
+        class: BLUE_BUTTON,
+      },
       { variant: 'secondary', text: 'Message Me', href: '#contact' },
     ]}
   >
@@ -292,7 +307,13 @@ const initialsAvatar = (initials: string) => `
     title="Let's talk"
     subtitle="Open to Director and Head of Product Marketing roles in security, data, and AI. The fastest way to reach me is below."
     actions={[
-      { variant: 'primary', text: 'Email me', href: 'mailto:mlmoreno@gmail.com', icon: 'tabler:mail' },
+      {
+        variant: 'primary',
+        text: 'Email me',
+        href: 'mailto:mlmoreno@gmail.com',
+        icon: 'tabler:mail',
+        class: BLUE_BUTTON,
+      },
       {
         variant: 'secondary',
         text: 'Connect on LinkedIn',
