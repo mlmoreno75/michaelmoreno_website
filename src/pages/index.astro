@@ -72,6 +72,7 @@ const initialsAvatar = (initials: string) => `
         { text: 'About', href: '#about' },
         { text: 'Expertise', href: '#expertise' },
         { text: 'Experience', href: '#experience' },
+        { text: 'Skills', href: '#skills' },
         { text: 'Accomplishments', href: '#accomplishments' },
       ]}
       actions={[{ text: 'Message Me', href: '#contact' }]}
@@ -233,6 +234,67 @@ const initialsAvatar = (initials: string) => `
       },
     ]}
     classes={{ container: 'max-w-3xl' }}
+  />
+
+  <!-- Features3 Widget: Skills ************** -->
+
+  <Features3
+    id="skills"
+    title="Skills"
+    subtitle="The skills behind the outcomes."
+    columns={3}
+    defaultIcon="tabler:point-filled"
+    items={[
+      {
+        icon: 'tabler:target-arrow',
+        title: 'Positioning and messaging',
+        description:
+          'Category narratives that land with engineers and executives, from SIEM to gen-AI to capital planning.',
+      },
+      {
+        icon: 'tabler:rocket',
+        title: 'Product launches and GTM',
+        description:
+          'End-to-end launches across Product, Sales, and Marketing, including a Google Cloud Marketplace launch with $7M+ in first-year revenue.',
+      },
+      {
+        icon: 'tabler:affiliate',
+        title: 'Partner and ecosystem marketing',
+        description: 'Hyperscaler, GSI, ISV, and OEM programs, including a 44X increase in Google-sourced revenue.',
+      },
+      {
+        icon: 'tabler:presentation',
+        title: 'Sales enablement',
+        description:
+          'Battlecards, pitch decks, and training built by someone who spent ten years carrying a quota.',
+      },
+      {
+        icon: 'tabler:chess',
+        title: 'Competitive intelligence and analyst relations',
+        description: 'Win/loss-informed messaging and analyst work with Gartner and Dresner Advisory.',
+      },
+      {
+        icon: 'tabler:tags',
+        title: 'Pricing and packaging',
+        description: 'SKU naming, positioning, and feature packaging in partnership with Product and Finance.',
+      },
+      {
+        icon: 'tabler:robot',
+        title: 'AI-native building',
+        description:
+          'Builder of CampaignAgent, an agentic marketing attribution platform, and an AI pricing and packaging tool.',
+      },
+      {
+        icon: 'tabler:broadcast',
+        title: 'Integrated campaigns',
+        description: 'One message carried across events, social, partner channels, and web.',
+      },
+      {
+        icon: 'tabler:users-group',
+        title: 'Team leadership',
+        description: 'Built and led a five-person solutions marketing team from scratch at SADA.',
+      },
+    ]}
   />
 
   <!-- Projects Widget *************** -->

@@ -7,6 +7,7 @@ export const headerData = {
     { text: 'About', href: getPermalink('/#about') },
     { text: 'Expertise', href: getPermalink('/#expertise') },
     { text: 'Experience', href: getPermalink('/#experience') },
+    { text: 'Skills', href: getPermalink('/#skills') },
     { text: 'Accomplishments', href: getPermalink('/#accomplishments') },
   ],
   actions: [{ text: 'Message Me', href: getPermalink('/#contact') }],
