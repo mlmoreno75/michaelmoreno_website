@@ -9,10 +9,12 @@ import Features3 from '~/components/widgets/Features3.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Projects from '~/components/widgets/Projects.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
+import ContactPaths from '~/components/widgets/ContactPaths.astro';
 import StructuredData from '~/components/common/StructuredData.astro';
 
 const LINKEDIN_URL = 'https://www.linkedin.com/in/michael-moreno';
+// TODO: replace with the real RevGen AI scheduling link.
+const STRATEGY_SESSION_URL = '#';
 
 // Original template blue for the two primary CTAs. `btn-primary` sets `dark:bg-primary`,
 // so the dark variants are required for the override to win in dark mode.
@@ -431,24 +433,29 @@ const photoAvatar = (src: string, name: string) => `
 
   <!-- Contact Widget **************** -->
 
-  <CallToAction
+  <ContactPaths
     id="contact"
     title="Let's talk"
-    subtitle="Open to Director and Head of Product Marketing roles in security, data, and AI. The fastest way to reach me is below."
-    actions={[
+    paths={[
       {
-        variant: 'primary',
-        text: 'Email me',
-        href: 'mailto:mlmoreno@gmail.com',
-        icon: 'tabler:mail',
-        class: BLUE_BUTTON,
+        label: 'Hiring for product or partner marketing?',
+        text: 'Need someone who translates technical value into business outcomes? I lead positioning, launches, and GTM that turn product depth into pipeline.',
+        action: {
+          variant: 'primary',
+          text: 'Discuss a role',
+          href: 'mailto:mlmoreno@gmail.com?subject=Product%20or%20partner%20marketing%20role',
+        },
+        secondaryLink: { text: 'Connect on LinkedIn', href: LINKEDIN_URL, target: '_blank' },
       },
       {
-        variant: 'secondary',
-        text: 'Connect on LinkedIn',
-        href: LINKEDIN_URL,
-        target: '_blank',
-        icon: 'tabler:brand-linkedin',
+        label: 'Building an early-stage startup?',
+        text: "Recently funded, launching fast, and your story isn't keeping up with your product? Book a strategy session with RevGen AI, my advisory practice, to sharpen your messaging, positioning, and GTM.",
+        action: {
+          variant: 'secondary',
+          text: 'Book a strategy session',
+          href: STRATEGY_SESSION_URL,
+          target: '_blank',
+        },
       },
     ]}
   />
