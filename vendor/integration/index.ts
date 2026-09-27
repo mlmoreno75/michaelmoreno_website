@@ -4,6 +4,7 @@ import type { AstroConfig, AstroIntegration } from 'astro';
 
 import configBuilder, { type Config } from './utils/configBuilder';
 import loadConfig from './utils/loadConfig';
+import { resolveSiteUrl } from './utils/siteUrl';
 
 export default ({ config: _themeConfig = 'src/config.yaml' } = {}): AstroIntegration => {
   let cfg: AstroConfig;
@@ -27,6 +28,11 @@ export default ({ config: _themeConfig = 'src/config.yaml' } = {}): AstroIntegra
 
         const rawJsonConfig = (await loadConfig(_themeConfig)) as Config;
         const { SITE, I18N, METADATA, APP_BLOG, UI, ANALYTICS } = configBuilder(rawJsonConfig);
+
+        // Derive the origin from the deployment environment so previews don't
+        // emit canonical/OG/sitemap URLs that point at production.
+        SITE.site = resolveSiteUrl(SITE.site);
+        buildLogger.info(`Site URL resolved to ${SITE.site}`);
 
         updateConfig({
           site: SITE.site,

@@ -1,6 +1,7 @@
 site:
   name: Michael Moreno
-  site: 'https://michaelmoreno-website.vercel.app'
+  # The origin is resolved at build time from NEXT_PUBLIC_SITE_URL, then the
+  # Vercel system URLs, then localhost. See vendor/integration/utils/siteUrl.ts.
   base: '/'
   trailingSlash: false
 
