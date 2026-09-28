@@ -45,12 +45,6 @@ const structuredData = {
   />
 `;
 
-const imagePlaceholder = (label: string) => `
-  <div class="flex aspect-[16/10] w-full items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900 px-6 text-center text-sm font-medium text-slate-400" aria-label="Image placeholder">
-    ${label}
-  </div>
-`;
-
 const projectImage = (src: string, alt: string) => `
   <div class="overflow-hidden">
     <img
@@ -327,7 +321,10 @@ const photoAvatar = (src: string, name: string) => `
         description:
           'A governance layer between campaign execution and CRM revenue reporting for HubSpot and Salesforce teams. It standardizes campaign structure at launch, so attribution is clean from day one instead of patched together later.',
         result: 'Board-ready campaign ROI without adding ops headcount.',
-        image: imagePlaceholder('[CampaignAgent dashboard screenshot]'),
+        image: projectImage(
+          '/images/projects/campaignagent.webp',
+          'CampaignAgent landing page: AI-Powered Campaign Intelligence for Modern Marketing Teams, with a campaign approval dashboard'
+        ),
       },
       {
         status: 'MVP demo',
@@ -348,7 +345,10 @@ const photoAvatar = (src: string, name: string) => `
         description:
           'As founding CMO for an early-stage AI startup, I built the venture pitch deck, messaging and positioning, website, and initial social GTM from a blank page.',
         result: '[One result: funding milestone, launch, or early pipeline]',
-        image: imagePlaceholder('[RagMetrics website or pitch deck screenshot]'),
+        image: projectImage(
+          '/images/projects/ragmetrics.webp',
+          'RagMetrics website hero: Leading GenAI Evaluation Platform'
+        ),
       },
     ]}
   />
