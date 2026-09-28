@@ -1,7 +1,8 @@
 site:
   name: Michael Moreno
-  # The origin is resolved at build time from NEXT_PUBLIC_SITE_URL, then the
-  # Vercel system URLs, then localhost. See vendor/integration/utils/siteUrl.ts.
+  # Canonical origin for SEO, sitemap, and Open Graph URLs. NEXT_PUBLIC_SITE_URL
+  # overrides it; see vendor/integration/utils/siteUrl.ts for the full order.
+  site: 'https://mikemorenostrategy.com'
   base: '/'
   trailingSlash: false
 
