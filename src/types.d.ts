@@ -406,8 +406,6 @@ export interface Project {
   result?: string;
   /** Small status label above the title, e.g. "In pilot development". */
   status?: string;
-  /** Visual tone of the status label; "muted" renders it in gray instead of the accent color. */
-  statusTone?: 'accent' | 'muted';
 }
 
 export interface Projects extends Omit<Headline, 'classes'>, Widget {
